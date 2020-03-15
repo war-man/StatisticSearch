@@ -1,0 +1,44 @@
+﻿@page
+<div class="row" id="content">
+    <div class="col-lg-6">
+        <h3>Welcome to Statistic Page</h3>`
+        </ br>
+    </div>
+    <div class="col-lg-6">
+        <div id="form">
+            <label>Keywords to search</label>
+            <input type="text" id="Keywords" />
+            <label>Url tag count</label>
+            <input type="text" id="UrlTag" />
+        </div>
+        <button class="btn btn-sm btn-default" id="new">Get update</button>
+        <div></div>
+        <div id="Result"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    (function () {
+        debugger;
+        document.getElementById('new').addEventListener('click', () => {
+            var key = document.getElementById('Keywords').value;
+            var urltag = document.getElementById('UrlTag').value;
+            fetch('/' + key + '/' + urltag, 
+                    {
+                      method: 'get',
+                      headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                      }
+                    })
+                  .then(res => res.json())
+                .then((result) => {
+                    var htmlInput = result.reduce(function (allhtml, item) {
+                        allhtml = allhtml+"<div> Search by: " + item.searchEngine + " Time: " + item.date + " Result: " + item.results +" </div>";
+                        return allhtml + "<div></div>";
+                    }, "");
+                    document.getElementById('Result').innerHTML = htmlInput;
+                  });
+        });
+    })();
+</script>
