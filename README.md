@@ -42,8 +42,8 @@ It is easy to extend to more search providers
      searchresult ...
    </div>
  ```  
-converts to "//div[contains(@class, 'TbwUpd NJjxre')]"
-
-
-
+converts to 
+```
+"//div[contains(@class, 'TbwUpd NJjxre')]"
+```
 For UI I use SPA with javascripts to update the result.
